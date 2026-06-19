@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { withSerwistInit } from "@serwist/next";
+import withSerwistInit from "@serwist/next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ["@prisma/adapter-mariadb", "mariadb"],
