@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { headers } from "next/headers";
 import { getUpcomingBookings, createBooking } from "@/lib/bookings";
-import { startOfDay } from "date-fns";
 
 export async function GET() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -26,7 +25,7 @@ export async function POST(req: NextRequest) {
   try {
     const booking = await createBooking({
       userId: session.user.id,
-      bookingDate: startOfDay(new Date(bookingDate)),
+      bookingDate: new Date(bookingDate + "T00:00:00.000Z"),
       shift,
       shared,
     });

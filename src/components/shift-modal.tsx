@@ -33,7 +33,7 @@ export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, 
     const res = await fetch("/api/bookings", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ userId, bookingDate: day.toISOString(), shift, shared }),
+      body: JSON.stringify({ userId, bookingDate: format(day, "yyyy-MM-dd"), shift, shared }),
     });
     setLoading(null);
     if (res.ok) {

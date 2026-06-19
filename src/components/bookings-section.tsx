@@ -3,6 +3,7 @@ import { useState, useCallback } from "react";
 import { BookingCalendar } from "./booking-calendar";
 import { BookingList } from "./booking-list";
 import { Separator } from "./ui/separator";
+import { parseBookingDate } from "@/lib/utils";
 import type { BookingWithUser } from "@/types";
 
 interface Props {
@@ -12,16 +13,14 @@ interface Props {
 }
 
 export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
-  const [bookings, setBookings] = useState<BookingWithUser[]>(() =>
-    initialBookings.map((b) => ({ ...b, bookingDate: new Date(b.bookingDate) }))
-  );
+  const normalize = (list: any[]) =>
+    list.map((b) => ({ ...b, bookingDate: parseBookingDate(b.bookingDate) }));
+
+  const [bookings, setBookings] = useState<BookingWithUser[]>(() => normalize(initialBookings));
 
   const refresh = useCallback(async () => {
     const res = await fetch("/api/bookings");
-    if (res.ok) {
-      const data = await res.json();
-      setBookings(data.map((b: any) => ({ ...b, bookingDate: new Date(b.bookingDate) })));
-    }
+    if (res.ok) setBookings(normalize(await res.json()));
   }, []);
 
   function handleDeleted(id: number) {

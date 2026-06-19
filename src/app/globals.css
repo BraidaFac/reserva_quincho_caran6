@@ -54,6 +54,10 @@
   * {
     @apply border-border;
   }
+  /* Previene el auto-zoom de iOS Safari al enfocar inputs (requiere font-size >= 16px) */
+  input, select, textarea {
+    font-size: 16px;
+  }
   body {
     @apply bg-background text-foreground;
     font-family: system-ui, -apple-system, sans-serif;
