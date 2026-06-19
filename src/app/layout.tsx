@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
-import { SerwistProvider } from "./sw-provider";
+
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,7 +34,6 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body suppressHydrationWarning>
-        <SerwistProvider />
         {children}
         <Toaster richColors position="top-right" />
       </body>
