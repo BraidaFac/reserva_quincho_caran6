@@ -3,9 +3,6 @@ import withSerwistInit from "@serwist/next";
 
 const nextConfig: NextConfig = {
   serverExternalPackages: ["@prisma/adapter-mariadb", "mariadb"],
-  turbopack: {
-    root: __dirname,
-  },
   allowedDevOrigins: ["*.ngrok-free.app", "*.ngrok.io"],
 };
 
