@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
+import { prisma } from "@/lib/prisma";
 import { headers } from "next/headers";
+import { hashPassword } from "@better-auth/utils/password";
 
 export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id: string }> }) {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -11,11 +13,16 @@ export async function PATCH(req: NextRequest, { params }: { params: Promise<{ id
   const { id } = await params;
   const { password } = await req.json();
 
-  if (!password || password.length < 6) {
-    return NextResponse.json({ error: "La contraseña debe tener al menos 6 caracteres" }, { status: 400 });
+  if (!password) {
+    return NextResponse.json({ error: "Contraseña requerida" }, { status: 400 });
   }
 
-  await auth.api.setPassword({ body: { newPassword: password }, headers: await headers() });
+  const hashed = await hashPassword(password);
+
+  await prisma.account.updateMany({
+    where: { userId: id, providerId: "credential" },
+    data: { password: hashed },
+  });
 
   return NextResponse.json({ ok: true });
 }

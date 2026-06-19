@@ -103,7 +103,6 @@ export function UsersPanel() {
   async function handlePassword(e: React.FormEvent) {
     e.preventDefault();
     if (modal?.type !== "password") return;
-    if (form.password.length < 6) { toast.error("Mínimo 6 caracteres"); return; }
     setIsSaving(true);
     const res = await fetch(`/api/admin/users/${modal.user.id}/password`, {
       method: "PATCH",
@@ -212,7 +211,7 @@ export function UsersPanel() {
             {[
               { id: "username", label: "Usuario", type: "text", placeholder: "nombreusuario" },
               { id: "email", label: "Email", type: "email", placeholder: "usuario@email.com" },
-              { id: "password", label: "Contraseña", type: "password", placeholder: "Mínimo 6 caracteres" },
+              { id: "password", label: "Contraseña", type: "password", placeholder: "Contraseña" },
               { id: "floor", label: "Piso", type: "text", placeholder: "Ej: 3" },
               { id: "flat", label: "Departamento", type: "text", placeholder: "Ej: A" },
             ].map(({ id, label, type, placeholder }) => (
@@ -285,7 +284,7 @@ export function UsersPanel() {
           <form onSubmit={handlePassword} className="space-y-3">
             <div className="space-y-1.5">
               <Label htmlFor="new-password">Nueva contraseña</Label>
-              <Input id="new-password" type="password" placeholder="Mínimo 6 caracteres" value={form.password} onChange={update("password")} required minLength={6} />
+              <Input id="new-password" type="password" placeholder="Nueva contraseña" value={form.password} onChange={update("password")} required />
             </div>
             <Button type="submit" className="w-full" disabled={isSaving}>
               {isSaving && <Loader2 className="h-4 w-4 animate-spin" />} Actualizar contraseña
