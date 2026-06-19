@@ -10,7 +10,6 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@ducanh2912/next-pwa": "^10.2.9",
     "@prisma/adapter-mariadb": "^7.7.0",
     "@prisma/client": "^7.7.0",
     "@radix-ui/react-avatar": "^1.1.11",
@@ -21,6 +20,7 @@
     "@radix-ui/react-select": "^2.2.6",
     "@radix-ui/react-separator": "^1.1.8",
     "@radix-ui/react-slot": "^1.2.4",
+    "@serwist/next": "^9.5.11",
     "better-auth": "^1.6.5",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
@@ -30,6 +30,7 @@
     "prisma": "^7.7.0",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "serwist": "^9.5.11",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.5.0",
     "zustand": "^5.0.12"
