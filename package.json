@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node scripts/seed-admin.mjs && next dev",
+    "postinstall": "prisma generate",
     "build": "next build",
     "start": "node scripts/seed-admin.mjs && next start",
     "lint": "eslint"
