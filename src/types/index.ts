@@ -2,7 +2,7 @@ export type Shift = "MORNING" | "EVENING";
 export type Role = "ADMIN" | "USER";
 
 export interface BookingWithUser {
-  id: string;
+  id: number;
   shift: Shift;
   bookingDate: Date;
   createdAt: Date;
