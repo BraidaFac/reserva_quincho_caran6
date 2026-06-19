@@ -1,5 +1,5 @@
 "use client";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import {
   add, eachDayOfInterval, endOfMonth, format, getDay,
   isSameDay, isSameMonth, isToday, parse, startOfToday,
@@ -19,33 +19,24 @@ const COL_START: Record<number, string> = {
 interface Props {
   userId: string;
   isAdmin: boolean;
+  bookings: BookingWithUser[];
+  onRefresh: () => Promise<void>;
 }
 
-export function BookingCalendar({ userId, isAdmin }: Props) {
+export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props) {
   const [today, setToday] = useState<Date>(() => startOfToday());
   const [currentMonth, setCurrentMonth] = useState(() => format(startOfToday(), "MMM-yyyy"));
+  const [selectedDay, setSelectedDay] = useState<Date | null>(null);
+  const [modalOpen, setModalOpen] = useState(false);
 
   useEffect(() => {
     const t = startOfToday();
     setToday(t);
     setCurrentMonth(format(t, "MMM-yyyy"));
   }, []);
-  const [bookings, setBookings] = useState<BookingWithUser[]>([]);
-  const [selectedDay, setSelectedDay] = useState<Date | null>(null);
-  const [modalOpen, setModalOpen] = useState(false);
 
   const firstDay = parse(currentMonth, "MMM-yyyy", new Date());
   const days = eachDayOfInterval({ start: firstDay, end: endOfMonth(firstDay) });
-
-  const fetchBookings = useCallback(async () => {
-    const res = await fetch("/api/bookings");
-    if (res.ok) {
-      const data = await res.json();
-      setBookings(data.map((b: any) => ({ ...b, bookingDate: new Date(b.bookingDate) })));
-    }
-  }, []);
-
-  useEffect(() => { fetchBookings(); }, [fetchBookings]);
 
   const bookingsForDay = (day: Date) =>
     bookings.filter((b) => isSameDay(day, new Date(b.bookingDate)));
@@ -132,7 +123,7 @@ export function BookingCalendar({ userId, isAdmin }: Props) {
           day={selectedDay}
           existingBookings={bookingsForDay(selectedDay)}
           userId={userId}
-          onBooked={fetchBookings}
+          onBooked={onRefresh}
         />
       )}
     </div>

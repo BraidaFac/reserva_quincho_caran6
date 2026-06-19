@@ -1,6 +1,5 @@
 "use client";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
 import { format } from "date-fns";
 import { es } from "date-fns/locale";
 import { Sun, Moon, Loader2, Users } from "lucide-react";
@@ -23,7 +22,6 @@ interface Props {
 }
 
 export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, onBooked }: Props) {
-  const router = useRouter();
   const [shared, setShared] = useState(false);
   const [loading, setLoading] = useState<"MORNING" | "EVENING" | null>(null);
 
@@ -41,7 +39,6 @@ export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, 
     if (res.ok) {
       toast.success("Reserva creada");
       onBooked();
-      router.refresh();
       onOpenChange(false);
       setShared(false);
     } else {

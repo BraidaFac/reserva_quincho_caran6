@@ -1,23 +1,17 @@
 "use client";
-import { useState } from "react";
 import { BookingCard } from "./booking-card";
 import type { BookingWithUser } from "@/types";
 
 interface Props {
-  initialBookings: BookingWithUser[];
+  bookings: BookingWithUser[];
   currentUserId: string;
   isAdmin: boolean;
   title: string;
   emptyMessage: string;
+  onDeleted: (id: number) => void;
 }
 
-export function BookingList({ initialBookings, currentUserId, isAdmin, title, emptyMessage }: Props) {
-  const [bookings, setBookings] = useState(initialBookings);
-
-  function handleDeleted(id: number) {
-    setBookings((prev) => prev.filter((b) => b.id !== id));
-  }
-
+export function BookingList({ bookings, currentUserId, isAdmin, title, emptyMessage, onDeleted }: Props) {
   return (
     <div className="space-y-3">
       <h2 className="font-semibold text-lg text-foreground">{title}</h2>
@@ -30,7 +24,7 @@ export function BookingList({ initialBookings, currentUserId, isAdmin, title, em
             booking={booking}
             currentUserId={currentUserId}
             isAdmin={isAdmin}
-            onDeleted={handleDeleted}
+            onDeleted={onDeleted}
           />
         ))
       )}
