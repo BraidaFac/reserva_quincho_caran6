@@ -14,7 +14,7 @@ interface Props {
 export function BookingList({ initialBookings, currentUserId, isAdmin, title, emptyMessage }: Props) {
   const [bookings, setBookings] = useState(initialBookings);
 
-  function handleDeleted(id: string) {
+  function handleDeleted(id: number) {
     setBookings((prev) => prev.filter((b) => b.id !== id));
   }
 

@@ -13,7 +13,7 @@ interface BookingCardProps {
   booking: BookingWithUser;
   currentUserId: string;
   isAdmin: boolean;
-  onDeleted: (id: string) => void;
+  onDeleted: (id: number) => void;
 }
 
 export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: BookingCardProps) {
