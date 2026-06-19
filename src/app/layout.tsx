@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Toaster } from "sonner";
-
+import SWRegister from "./sw-register";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -34,6 +34,7 @@ export default function RootLayout({
   return (
     <html lang="es" suppressHydrationWarning>
       <body suppressHydrationWarning>
+        <SWRegister />
         {children}
         <Toaster richColors position="top-right" />
       </body>
