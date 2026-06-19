@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { cn, parseBookingDate } from "@/lib/utils";
+import { cn } from "@/lib/utils";
 import type { BookingWithUser } from "@/types";
 
 interface BookingCardProps {
@@ -23,7 +23,6 @@ export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: Book
   const isMine = booking.userId === currentUserId;
   const canDelete = isMine || isAdmin;
   const isMorning = booking.shift === "MORNING";
-  const bookingDate = parseBookingDate(booking.bookingDate);
 
   async function handleDelete() {
     setIsDeleting(true);
@@ -54,7 +53,7 @@ export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: Book
           </div>
           <div className="min-w-0">
             <p className="font-medium text-sm capitalize truncate">
-              {format(bookingDate, "EEEE d 'de' MMMM", { locale: es })}
+              {format(booking.bookingDate, "EEEE d 'de' MMMM", { locale: es })}
             </p>
             <div className="flex items-center gap-1.5 flex-wrap mt-0.5">
               <span className="text-xs text-muted-foreground">
@@ -89,7 +88,7 @@ export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: Book
             <DialogDescription>
               ¿Cancelar el turno del{" "}
               <strong className="text-foreground capitalize">
-                {format(bookingDate, "EEEE d 'de' MMMM", { locale: es })}
+                {format(booking.bookingDate, "EEEE d 'de' MMMM", { locale: es })}
               </strong>{" "}
               ({isMorning ? "Mediodía" : "Noche"})?
             </DialogDescription>
