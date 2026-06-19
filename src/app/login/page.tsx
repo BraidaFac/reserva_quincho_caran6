@@ -27,7 +27,6 @@ export default function LoginPage() {
         return;
       }
       router.push("/");
-      router.refresh();
     } catch {
       toast.error("Usuario o contraseña incorrectos");
     } finally {
