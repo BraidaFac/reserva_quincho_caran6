@@ -10,7 +10,9 @@ export async function DELETE(
   const session = await auth.api.getSession({ headers: await headers() });
   if (!session) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
 
-  const { id } = await params;
+  const { id: rawId } = await params;
+  const id = parseInt(rawId, 10);
+  if (isNaN(id)) return NextResponse.json({ error: "ID inválido" }, { status: 400 });
   const isAdmin = (session.user as any).role === "ADMIN";
 
   try {
