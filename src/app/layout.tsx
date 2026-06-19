@@ -5,7 +5,6 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Caran VI",
   description: "Sistema de reservas — Edificio Caran VI",
-  manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
