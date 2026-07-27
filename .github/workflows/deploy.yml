@@ -21,7 +21,9 @@ jobs:
 
       - name: Build image
         run: |
-          docker build -t ${{ secrets.DOCKER_USER }}/caran6:latest .
+          docker build \
+            --build-arg NEXT_PUBLIC_APP_URL=${{ secrets.NEXT_PUBLIC_APP_URL }} \
+            -t ${{ secrets.DOCKER_USER }}/caran6:latest .
 
       - name: Push image
         run: |

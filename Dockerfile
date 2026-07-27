@@ -7,6 +7,9 @@ COPY prisma ./prisma
 COPY prisma.config.ts ./
 RUN npm ci
 
+ARG NEXT_PUBLIC_APP_URL
+ENV NEXT_PUBLIC_APP_URL=$NEXT_PUBLIC_APP_URL
+
 COPY . .
 RUN npx prisma generate
 RUN npm run build
