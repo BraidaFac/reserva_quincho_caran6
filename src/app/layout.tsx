@@ -26,6 +26,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   minimumScale: 1,
+  maximumScale: 1,
   // viewportFit=cover: el viewport cubre pantalla completa incluyendo notch/Dynamic Island.
   // Con statusBarStyle="default", iOS respeta automáticamente el safe-area-inset-top,
   // pero igual agregamos el CSS para bottom e sides (home indicator, etc.).
