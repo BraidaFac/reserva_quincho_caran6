@@ -51,8 +51,8 @@ export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props)
   }
 
   return (
-    <div className="space-y-6">
-      <div className="rounded-xl border bg-card p-3 sm:p-6 shadow-sm">
+    <div className="space-y-6 h-full">
+      <div className="rounded-xl border bg-card p-3 sm:p-6 shadow-sm h-full">
         {/* Month nav */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(format(add(firstDay, { months: -1 }), "MMM-yyyy"))}>

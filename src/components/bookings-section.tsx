@@ -39,8 +39,8 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
         onRefresh={refresh}
       />
 
-      <div className="space-y-6">
-        <div className="rounded-xl border bg-card p-4 shadow-sm space-y-4">
+      <div className="h-full">
+        <div className="h-full rounded-xl border bg-card p-4 shadow-sm space-y-4">
           <BookingList
             bookings={myBookings}
             currentUserId={userId}
