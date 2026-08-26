@@ -32,8 +32,8 @@ export function SignupForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (form.password.length < 6) {
-      toast.error("La contraseña debe tener al menos 6 caracteres");
+    if (!form.password) {
+      toast.error("Ingresá una contraseña");
       return;
     }
     setIsLoading(true);

@@ -210,14 +210,14 @@ export function UsersPanel() {
           <form onSubmit={handleCreate} className="space-y-3">
             {[
               { id: "username", label: "Usuario", type: "text", placeholder: "nombreusuario" },
-              { id: "email", label: "Email", type: "email", placeholder: "usuario@email.com" },
+              { id: "email", label: "Email (opcional)", type: "text", placeholder: "usuario@email.com", optional: true },
               { id: "password", label: "Contraseña", type: "password", placeholder: "Contraseña" },
               { id: "floor", label: "Piso", type: "text", placeholder: "Ej: 3" },
               { id: "flat", label: "Departamento", type: "text", placeholder: "Ej: A" },
-            ].map(({ id, label, type, placeholder }) => (
+            ].map(({ id, label, type, placeholder, optional }: any) => (
               <div key={id} className="space-y-1.5">
                 <Label htmlFor={`c-${id}`}>{label}</Label>
-                <Input id={`c-${id}`} type={type} placeholder={placeholder} value={form[id as keyof typeof form]} onChange={update(id as keyof typeof form)} required />
+                <Input id={`c-${id}`} type={type} placeholder={placeholder} value={form[id as keyof typeof form]} onChange={update(id as keyof typeof form)} required={!optional} />
               </div>
             ))}
             <div className="space-y-1.5">
