@@ -141,10 +141,10 @@ export function UsersPanel() {
         </Button>
       </div>
 
-      <div className="rounded-xl border bg-card shadow-sm overflow-hidden">
+      <div className="rounded-xl border bg-card shadow-warm-sm overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/40">
+            <TableRow className="bg-secondary/40">
               <TableHead>Usuario</TableHead>
               <TableHead className="hidden sm:table-cell">Email</TableHead>
               <TableHead className="hidden md:table-cell">Depto</TableHead>
@@ -157,7 +157,7 @@ export function UsersPanel() {
               Array.from({ length: 4 }).map((_, i) => (
                 <TableRow key={i}>
                   {Array.from({ length: 5 }).map((_, j) => (
-                    <TableCell key={j}><div className="h-4 bg-muted animate-pulse rounded" /></TableCell>
+                    <TableCell key={j}><div className="h-4 bg-secondary/30 animate-pulse rounded" /></TableCell>
                   ))}
                 </TableRow>
               ))
@@ -208,18 +208,28 @@ export function UsersPanel() {
             <DialogDescription>Completá los datos para crear la cuenta</DialogDescription>
           </DialogHeader>
           <form onSubmit={handleCreate} className="space-y-3">
-            {[
-              { id: "username", label: "Usuario", type: "text", placeholder: "nombreusuario" },
-              { id: "email", label: "Email (opcional)", type: "text", placeholder: "usuario@email.com", optional: true },
-              { id: "password", label: "Contraseña", type: "password", placeholder: "Contraseña" },
-              { id: "floor", label: "Piso", type: "text", placeholder: "Ej: 3" },
-              { id: "flat", label: "Departamento", type: "text", placeholder: "Ej: A" },
-            ].map(({ id, label, type, placeholder, optional }: any) => (
-              <div key={id} className="space-y-1.5">
-                <Label htmlFor={`c-${id}`}>{label}</Label>
-                <Input id={`c-${id}`} type={type} placeholder={placeholder} value={form[id as keyof typeof form]} onChange={update(id as keyof typeof form)} required={!optional} />
+            <div className="space-y-1.5">
+              <Label htmlFor="c-username">Usuario</Label>
+              <Input id="c-username" type="text" placeholder="nombreusuario" value={form.username} onChange={update("username")} required />
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="c-password">Contraseña</Label>
+              <Input id="c-password" type="password" placeholder="Contraseña" value={form.password} onChange={update("password")} required />
+            </div>
+            <div className="grid grid-cols-2 gap-3">
+              <div className="space-y-1.5">
+                <Label htmlFor="c-floor">Piso</Label>
+                <Input id="c-floor" type="text" placeholder="Ej: 3" value={form.floor} onChange={update("floor")} required />
               </div>
-            ))}
+              <div className="space-y-1.5">
+                <Label htmlFor="c-flat">Depto</Label>
+                <Input id="c-flat" type="text" placeholder="Ej: A" value={form.flat} onChange={update("flat")} required />
+              </div>
+            </div>
+            <div className="space-y-1.5">
+              <Label htmlFor="c-email">Email <span className="text-muted-foreground font-normal">(opcional)</span></Label>
+              <Input id="c-email" type="text" placeholder="usuario@email.com" value={form.email} onChange={update("email")} />
+            </div>
             <div className="space-y-1.5">
               <Label>Rol</Label>
               <Select value={form.role} onValueChange={(v) => setForm((f) => ({ ...f, role: v as any }))}>
@@ -230,7 +240,7 @@ export function UsersPanel() {
                 </SelectContent>
               </Select>
             </div>
-            <Button type="submit" className="w-full" disabled={isSaving}>
+            <Button type="submit" className="w-full mt-1" disabled={isSaving}>
               {isSaving && <Loader2 className="h-4 w-4 animate-spin" />} Crear usuario
             </Button>
           </form>

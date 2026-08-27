@@ -40,7 +40,7 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
       />
 
       <div>
-        <div className="rounded-xl border bg-card p-4 shadow-sm space-y-4">
+        <div className="rounded-xl border bg-card p-4 shadow-warm-sm space-y-4">
           <BookingList
             bookings={myBookings}
             currentUserId={userId}

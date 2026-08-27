@@ -20,33 +20,41 @@
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
+  --color-night: hsl(var(--night));
+  --color-night-foreground: hsl(var(--night-foreground));
   --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-sm: calc(var(--radius) - 8px);
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-dm-sans);
 }
+
+/* ── BRASA Design System ── */
 
 @layer base {
   :root {
-    --background: 45 30% 96%;
-    --foreground: 150 15% 15%;
-    --card: 0 0% 100%;
-    --card-foreground: 150 15% 15%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 150 15% 15%;
-    --primary: 152 45% 55%;
+    --background: 40 25% 95%;
+    --foreground: 20 15% 15%;
+    --card: 38 20% 98%;
+    --card-foreground: 20 15% 15%;
+    --popover: 38 20% 98%;
+    --popover-foreground: 20 15% 15%;
+    --primary: 15 75% 48%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 43 50% 92%;
-    --secondary-foreground: 150 15% 25%;
-    --muted: 43 30% 93%;
-    --muted-foreground: 150 10% 50%;
-    --accent: 152 35% 88%;
-    --accent-foreground: 152 40% 25%;
-    --destructive: 0 72% 60%;
+    --secondary: 32 35% 82%;
+    --secondary-foreground: 25 20% 25%;
+    --muted: 35 15% 91%;
+    --muted-foreground: 30 10% 45%;
+    --accent: 42 65% 55%;
+    --accent-foreground: 35 30% 18%;
+    --destructive: 0 60% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 150 20% 88%;
-    --input: 150 20% 88%;
-    --ring: 152 45% 55%;
-    --radius: 0.75rem;
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 15 75% 48%;
+    --night: 220 30% 40%;
+    --night-foreground: 0 0% 100%;
+    --radius: 0.875rem;
   }
 }
 
@@ -54,28 +62,73 @@
   * {
     @apply border-border;
   }
-  /* Previene el auto-zoom de iOS Safari al enfocar inputs (requiere font-size >= 16px) */
   input, select, textarea {
     font-size: 16px;
   }
   body {
     @apply bg-background text-foreground;
-    font-family: system-ui, -apple-system, sans-serif;
-    /* Safe area para notch / Dynamic Island / home indicator (iOS standalone).
-       Con statusBarStyle="default", el top ya está manejado por el OS,
-       pero bottom y sides pueden quedar sin margen sin esto. */
+    font-family: var(--font-dm-sans), system-ui, sans-serif;
     padding-bottom: env(safe-area-inset-bottom);
     padding-left: env(safe-area-inset-left);
     padding-right: env(safe-area-inset-right);
-    /* dvh evita el salto de altura cuando la barra de Safari aparece/desaparece. */
     min-height: 100dvh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-fraunces), Georgia, serif;
+  }
+}
+
+/* ── Shadows (warm tones, never blue-gray) ── */
+
+@layer utilities {
+  .shadow-warm-sm {
+    box-shadow: 0 1px 3px hsla(20, 15%, 15%, 0.06);
+  }
+  .shadow-warm-md {
+    box-shadow: 0 4px 12px hsla(20, 15%, 15%, 0.08);
+  }
+  .shadow-ember {
+    box-shadow: 0 0 12px 2px hsla(15, 75%, 48%, 0.15);
+  }
+}
+
+/* ── Ember dot (brand motif) ── */
+
+.ember-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, hsl(30 90% 70%), hsl(15 75% 48%), hsl(10 60% 30%));
+  box-shadow: 0 0 6px 1px hsla(15, 75%, 48%, 0.4);
+}
+
+.ember-dot-sm {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, hsl(30 90% 70%), hsl(15 75% 48%), hsl(10 60% 30%));
+  box-shadow: 0 0 4px 1px hsla(15, 75%, 48%, 0.3);
+}
+
+/* ── Animations ── */
+
+@keyframes fade-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
   }
 }
 
 @keyframes fade-slide-up {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(12px);
   }
   to {
     opacity: 1;
@@ -88,13 +141,69 @@
   to   { opacity: 1; }
 }
 
+@keyframes ember-glow {
+  0%, 100% {
+    box-shadow: 0 0 6px 1px hsla(15, 75%, 48%, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 10px 3px hsla(15, 75%, 48%, 0.5);
+  }
+}
+
+@keyframes ember-pulse {
+  0%, 100% {
+    opacity: 0.7;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+.animate-fade-scale-in {
+  animation: fade-scale-in 0.3s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 .animate-fade-slide-up {
   animation: fade-slide-up 0.45s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .animate-fade-in {
-  animation: fade-in 0.4s ease both;
+  animation: fade-in 0.3s ease both;
 }
 
+.animate-ember-glow {
+  animation: ember-glow 3s ease-in-out infinite;
+}
+
+.animate-ember-pulse {
+  animation: ember-pulse 1.5s cubic-bezier(0.25, 0.1, 0.25, 1) infinite;
+}
+
+.animation-delay-50 { animation-delay: 50ms; }
+.animation-delay-100 { animation-delay: 100ms; }
 .animation-delay-150 { animation-delay: 150ms; }
+.animation-delay-200 { animation-delay: 200ms; }
 .animation-delay-250 { animation-delay: 250ms; }
+.animation-delay-300 { animation-delay: 300ms; }
+
+/* Reduced motion: keep opacity transitions, remove scale/translate/glow */
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-scale-in,
+  .animate-fade-slide-up {
+    animation: fade-in 0.15s ease both;
+  }
+  .animate-ember-glow,
+  .animate-ember-pulse {
+    animation: none;
+  }
+  .animation-delay-50,
+  .animation-delay-100,
+  .animation-delay-150,
+  .animation-delay-200,
+  .animation-delay-250,
+  .animation-delay-300 {
+    animation-delay: 0ms;
+  }
+}

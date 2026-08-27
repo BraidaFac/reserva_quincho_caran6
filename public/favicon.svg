@@ -1,16 +1,35 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Background circle -->
-  <circle cx="32" cy="32" r="32" fill="hsl(152, 45%, 55%)"/>
-  <!-- Building silhouette -->
-  <rect x="14" y="20" width="36" height="30" rx="1" fill="white" opacity="0.15"/>
-  <rect x="18" y="16" width="28" height="34" rx="1" fill="white" opacity="0.9"/>
-  <!-- Windows grid -->
-  <rect x="22" y="21" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.7"/>
-  <rect x="31" y="21" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.7"/>
-  <rect x="22" y="29" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.7"/>
-  <rect x="31" y="29" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.7"/>
-  <rect x="22" y="37" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.4"/>
-  <rect x="31" y="37" width="6" height="5" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.7"/>
-  <!-- Door -->
-  <rect x="27" y="43" width="10" height="7" rx="0.5" fill="hsl(152, 45%, 55%)" opacity="0.5"/>
+  <defs>
+    <radialGradient id="fav-bg" cx="45%" cy="38%" r="70%">
+      <stop offset="0%" stop-color="#3a2e28"/>
+      <stop offset="100%" stop-color="#1e1a18"/>
+    </radialGradient>
+    <radialGradient id="fav-ember" cx="35%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#f7b97a"/>
+      <stop offset="40%" stop-color="#D65A1F"/>
+      <stop offset="100%" stop-color="#7a2408"/>
+    </radialGradient>
+    <filter id="fav-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <filter id="fav-dot-glow" x="-100%" y="-100%" width="300%" height="300%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  <!-- Background -->
+  <circle cx="32" cy="32" r="32" fill="url(#fav-bg)"/>
+  <!-- C arc: center ~(30,32), radius 16, ~70° opening to the right -->
+  <path d="M 43,23 A 16,16 0 1 0 43,41"
+        stroke="#D65A1F" stroke-width="6" stroke-linecap="round" fill="none"
+        filter="url(#fav-glow)"/>
+  <!-- Punto Brasa — ember dot inside C opening -->
+  <circle cx="40" cy="32" r="4" fill="url(#fav-ember)" filter="url(#fav-dot-glow)"/>
 </svg>

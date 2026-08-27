@@ -41,15 +41,15 @@ export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: Book
     <>
       <div
         className={cn(
-          "flex items-center justify-between rounded-xl border p-4 transition-colors",
-          isMorning ? "bg-secondary/60 border-secondary" : "bg-accent/40 border-accent"
+          "flex items-center justify-between rounded-xl border p-4 transition-colors animate-fade-scale-in",
+          isMorning ? "bg-secondary/60 border-secondary" : "bg-night/10 border-night/30"
         )}
       >
         <div className="flex items-center gap-3 min-w-0">
           <div className={cn("h-9 w-9 rounded-full flex items-center justify-center flex-shrink-0",
-            isMorning ? "bg-amber-100" : "bg-primary/10"
+            isMorning ? "bg-accent/20" : "bg-night/15"
           )}>
-            {isMorning ? <Sun className="h-4 w-4 text-amber-600" /> : <Moon className="h-4 w-4 text-primary" />}
+            {isMorning ? <Sun className="h-4 w-4 text-accent-foreground" /> : <Moon className="h-4 w-4 text-night" />}
           </div>
           <div className="min-w-0">
             <p className="font-medium text-sm capitalize truncate">
@@ -64,7 +64,7 @@ export function BookingCard({ booking, currentUserId, isAdmin, onDeleted }: Book
                   <Users className="h-2.5 w-2.5" /> Compartido
                 </Badge>
               )}
-              {isMine && <Badge variant="accent" className="text-xs py-0 h-4">Mía</Badge>}
+              {isMine && <Badge className="text-xs py-0 h-4 bg-primary/15 text-primary border-primary/20">Mía</Badge>}
             </div>
           </div>
         </div>

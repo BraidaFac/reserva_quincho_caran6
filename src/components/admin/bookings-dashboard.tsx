@@ -68,7 +68,7 @@ export function BookingsDashboard() {
   return (
     <div className="space-y-4">
       {/* Filters */}
-      <div className="rounded-xl border bg-card p-4 shadow-sm">
+      <div className="rounded-xl border bg-card p-4 shadow-warm-sm">
         <form onSubmit={applyFilters} className="flex flex-wrap gap-3 items-end">
           <div className="space-y-1.5 min-w-[140px]">
             <Label>Desde</Label>
@@ -117,10 +117,10 @@ export function BookingsDashboard() {
       )}
 
       {/* Table */}
-      <div className="rounded-xl border bg-card shadow-sm overflow-hidden">
+      <div className="rounded-xl border bg-card shadow-warm-sm overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow className="bg-muted/40">
+            <TableRow className="bg-secondary/40">
               <TableHead>Fecha</TableHead>
               <TableHead>Turno</TableHead>
               <TableHead>Usuario</TableHead>
@@ -154,7 +154,7 @@ export function BookingsDashboard() {
                     <TableCell>
                       <Badge
                         variant="secondary"
-                        className={cn("gap-1", isMorning ? "bg-amber-100 text-amber-700" : "bg-accent text-accent-foreground")}
+                        className={cn("gap-1", isMorning ? "bg-accent/20 text-accent-foreground" : "bg-night/15 text-night")}
                       >
                         {isMorning ? <Sun className="h-3 w-3" /> : <Moon className="h-3 w-3" />}
                         {isMorning ? "Mediodía" : "Noche"}

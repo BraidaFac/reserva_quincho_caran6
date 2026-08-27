@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
   try {
     const booking = await createBooking({
       userId: session.user.id,
-      bookingDate: new Date(bookingDate + "T00:00:00.000Z"),
+      bookingDate: new Date(bookingDate + "T00:00:00"),
       shift,
       shared,
     });

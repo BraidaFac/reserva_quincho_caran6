@@ -52,13 +52,13 @@ export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props)
 
   return (
     <div className="space-y-6">
-      <div className="rounded-xl border bg-card p-3 sm:p-6 shadow-sm">
+      <div className="rounded-xl border bg-card p-3 sm:p-6 shadow-warm-sm">
         {/* Month nav */}
         <div className="flex items-center justify-between mb-4 sm:mb-6">
           <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(format(add(firstDay, { months: -1 }), "MMM-yyyy"))}>
             <ChevronLeft className="h-4 w-4" />
           </Button>
-          <h2 className="font-semibold text-base sm:text-lg capitalize">
+          <h2 className="font-display font-semibold text-base sm:text-lg capitalize">
             {format(firstDay, "MMMM yyyy", { locale: es })}
           </h2>
           <Button variant="ghost" size="icon" onClick={() => setCurrentMonth(format(add(firstDay, { months: 1 }), "MMM-yyyy"))}>
@@ -92,8 +92,8 @@ export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props)
                   onClick={() => openModal(day)}
                   className={cn(
                     "h-8 w-8 sm:h-9 sm:w-9 rounded-full flex flex-col items-center justify-center text-xs sm:text-sm font-medium transition-colors relative",
-                    isToday(day) && "bg-primary text-primary-foreground",
-                    !isToday(day) && !past && !full && "hover:bg-accent",
+                    isToday(day) && "bg-primary text-primary-foreground animate-ember-glow rounded-full",
+                    !isToday(day) && !past && !full && "hover:bg-secondary",
                     past && "text-muted-foreground/40 cursor-not-allowed",
                     full && !past && "cursor-not-allowed",
                     !isToday(day) && !past && "text-foreground",
@@ -102,8 +102,8 @@ export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props)
                   {format(day, "d")}
                 </button>
                 <div className="flex gap-0.5 mt-0.5 h-1.5">
-                  {hasMorning && <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />}
-                  {hasEvening && <span className="h-1.5 w-1.5 rounded-full bg-primary" />}
+                  {hasMorning && <span className="h-1.5 w-1.5 rounded-full bg-accent" />}
+                  {hasEvening && <span className="h-1.5 w-1.5 rounded-full bg-night" />}
                 </div>
               </div>
             );
@@ -111,8 +111,8 @@ export function BookingCalendar({ userId, isAdmin, bookings, onRefresh }: Props)
         </div>
 
         <div className="flex items-center gap-4 mt-3 sm:mt-4 text-xs text-muted-foreground justify-center">
-          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-amber-400" /> Mediodía</span>
-          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-primary" /> Noche</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-accent" /> Mediodía</span>
+          <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-full bg-night" /> Noche</span>
         </div>
       </div>
 

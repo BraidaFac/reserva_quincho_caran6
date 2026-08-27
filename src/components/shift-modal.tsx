@@ -66,10 +66,10 @@ export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, 
               "w-full flex items-center gap-3 rounded-xl border p-4 text-left transition-colors",
               morningTaken
                 ? "opacity-40 cursor-not-allowed bg-muted"
-                : "hover:bg-secondary/80 bg-secondary/40 border-secondary cursor-pointer"
+                : "hover:bg-secondary/60 bg-secondary/40 border-secondary cursor-pointer"
             )}
           >
-            <Sun className="h-5 w-5 text-amber-500 flex-shrink-0" />
+            <Sun className="h-5 w-5 text-accent flex-shrink-0" />
             <div className="flex-1">
               <p className="font-medium text-sm">Mediodía</p>
               {morningTaken && <p className="text-xs text-muted-foreground">Ocupado</p>}
@@ -85,10 +85,10 @@ export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, 
               "w-full flex items-center gap-3 rounded-xl border p-4 text-left transition-colors",
               eveningTaken
                 ? "opacity-40 cursor-not-allowed bg-muted"
-                : "hover:bg-accent/80 bg-accent/40 border-accent cursor-pointer"
+                : "hover:bg-night/20 bg-night/10 border-night/20 cursor-pointer"
             )}
           >
-            <Moon className="h-5 w-5 text-primary flex-shrink-0" />
+            <Moon className="h-5 w-5 text-night flex-shrink-0" />
             <div className="flex-1">
               <p className="font-medium text-sm">Noche</p>
               {eveningTaken && <p className="text-xs text-muted-foreground">Ocupado</p>}
@@ -101,7 +101,7 @@ export function ShiftModal({ open, onOpenChange, day, existingBookings, userId, 
             onClick={() => setShared(!shared)}
             className={cn(
               "w-full flex items-center gap-3 rounded-xl border p-3 text-left transition-colors",
-              shared ? "bg-accent border-accent" : "bg-muted/40 border-muted"
+              shared ? "bg-secondary border-secondary" : "bg-muted/40 border-muted"
             )}
           >
             <div className={cn(
