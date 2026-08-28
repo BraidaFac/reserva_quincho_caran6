@@ -18,11 +18,14 @@ export function Navbar() {
   }
 
   return (
-    <header className="border-b bg-card">
+    <header className="border-b border-border bg-card">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
         <div className="flex items-center gap-3">
-          <span className="text-xl">🏠</span>
-          <span className="font-semibold text-foreground">Reservas</span>
+          <svg viewBox="0 0 24 24" fill="none" className="h-6 w-6">
+            <path d="M12 2C8 7 4 10 4 14.5C4 18.64 7.58 22 12 22C16.42 22 20 18.64 20 14.5C20 10 16 7 12 2Z" fill="hsl(15 75% 48%)" opacity="0.9"/>
+            <path d="M12 6C10 9 8 11 8 13.5C8 16.54 9.79 18 12 18C14.21 18 16 16.54 16 13.5C16 11 14 9 12 6Z" fill="hsl(30 90% 70%)" opacity="0.8"/>
+          </svg>
+          <span className="font-display font-semibold text-foreground">Caran <span className="text-primary">VI</span></span>
         </div>
         {user && (
           <div className="flex items-center gap-3">

@@ -18,15 +18,17 @@ export function BookingList({ bookings, currentUserId, isAdmin, title, emptyMess
       {bookings.length === 0 ? (
         <p className="text-sm text-muted-foreground py-4 text-center">{emptyMessage}</p>
       ) : (
-        bookings.map((booking) => (
-          <BookingCard
-            key={booking.id}
-            booking={booking}
-            currentUserId={currentUserId}
-            isAdmin={isAdmin}
-            onDeleted={onDeleted}
-          />
-        ))
+        <div className="max-h-[360px] overflow-y-auto space-y-3 pr-1">
+          {bookings.map((booking) => (
+            <BookingCard
+              key={booking.id}
+              booking={booking}
+              currentUserId={currentUserId}
+              isAdmin={isAdmin}
+              onDeleted={onDeleted}
+            />
+          ))}
+        </div>
       )}
     </div>
   );

@@ -32,8 +32,8 @@ export function SignupForm() {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    if (form.password.length < 6) {
-      toast.error("La contraseña debe tener al menos 6 caracteres");
+    if (!form.password) {
+      toast.error("Ingresá una contraseña");
       return;
     }
     setIsLoading(true);
@@ -92,10 +92,11 @@ export function SignupForm() {
   }[];
 
   return (
-    <Card className="w-full max-w-sm shadow-md">
+    <Card className="w-full max-w-sm shadow-warm-md border-t-2 border-t-primary/30 animate-fade-scale-in">
       <CardHeader className="text-center pb-2">
-        <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-accent flex items-center justify-center">
-          <UserPlus className="h-5 w-5 text-accent-foreground" />
+        <div className="mx-auto mb-3 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center relative">
+          <span className="ember-dot absolute inset-0 m-auto" />
+          <UserPlus className="h-5 w-5 text-primary relative z-10" />
         </div>
         <CardTitle className="text-2xl">Crear usuario</CardTitle>
         <CardDescription>Solo disponible para administradores</CardDescription>

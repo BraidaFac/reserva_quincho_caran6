@@ -23,8 +23,11 @@ export function AdminSidebar() {
   return (
     <aside className="w-14 sm:w-52 border-r bg-card flex flex-col flex-shrink-0">
       <div className="p-4 border-b flex items-center gap-2">
-        <span className="text-lg">🏠</span>
-        <span className="hidden sm:block font-semibold text-sm">Panel Admin</span>
+        <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5 flex-shrink-0">
+          <path d="M12 2C8 7 4 10 4 14.5C4 18.64 7.58 22 12 22C16.42 22 20 18.64 20 14.5C20 10 16 7 12 2Z" fill="hsl(15 75% 48%)" opacity="0.9"/>
+          <path d="M12 6C10 9 8 11 8 13.5C8 16.54 9.79 18 12 18C14.21 18 16 16.54 16 13.5C16 11 14 9 12 6Z" fill="hsl(30 90% 70%)" opacity="0.8"/>
+        </svg>
+        <span className="hidden sm:block font-display font-semibold text-sm">Caran <span className="text-primary">VI</span></span>
       </div>
 
       <nav className="flex-1 p-2 space-y-1">
@@ -37,7 +40,7 @@ export function AdminSidebar() {
               className={cn(
                 "flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors",
                 active
-                  ? "bg-accent text-accent-foreground"
+                  ? "bg-primary/10 text-primary font-semibold"
                   : "text-muted-foreground hover:bg-muted hover:text-foreground"
               )}
             >

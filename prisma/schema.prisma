@@ -8,9 +8,10 @@ datasource db {
 }
 
 model User {
-  id            String    @id
-  username      String    @unique
-  email         String?   @unique
+  id              String    @id
+  username        String    @unique
+  displayUsername String?
+  email           String?   @unique
   emailVerified Boolean   @default(false)
   name          String
   flat          String
@@ -46,6 +47,7 @@ model Account {
   userId                String
   providerId            String
   accountId             String
+  issuer                String?
   password              String?
   accessToken           String?   @db.Text
   refreshToken          String?   @db.Text
