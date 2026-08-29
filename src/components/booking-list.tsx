@@ -11,14 +11,23 @@ interface Props {
   onDeleted: (id: number) => void;
 }
 
-export function BookingList({ bookings, currentUserId, isAdmin, title, emptyMessage, onDeleted }: Props) {
+export function BookingList({
+  bookings,
+  currentUserId,
+  isAdmin,
+  title,
+  emptyMessage,
+  onDeleted,
+}: Props) {
   return (
     <div className="space-y-3">
       <h2 className="font-semibold text-lg text-foreground">{title}</h2>
       {bookings.length === 0 ? (
-        <p className="text-sm text-muted-foreground py-4 text-center">{emptyMessage}</p>
+        <p className="text-sm text-muted-foreground py-4 text-center">
+          {emptyMessage}
+        </p>
       ) : (
-        <div className="max-h-[360px] overflow-y-auto space-y-3 pr-1">
+        <div className="max-h-90 overflow-y-auto space-y-3 pr-1">
           {bookings.map((booking) => (
             <BookingCard
               key={booking.id}

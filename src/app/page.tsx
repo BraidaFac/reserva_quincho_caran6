@@ -17,10 +17,14 @@ export default async function HomePage() {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-8">
-        <div className="mb-4 sm:mb-6">
-          <h1 className="text-2xl font-bold text-foreground">Reservas de turnos</h1>
-          <p className="text-sm text-muted-foreground mt-1">Seleccioná un día para reservar tu turno</p>
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 sm:py-2 py-4">
+        <div className="mb-4 sm:mb-2">
+          <h1 className="text-2xl font-bold text-foreground">
+            Reservas de turnos
+          </h1>
+          <p className="text-sm text-muted-foreground mt-1">
+            Seleccioná un día para reservar tu turno
+          </p>
         </div>
         <BookingsSection
           userId={session.user.id}

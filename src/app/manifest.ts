@@ -27,13 +27,16 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     icons: [
-      // "any" = icono plano estándar (Chrome, Edge, Android por defecto).
+      { src: "/icons/icon-48.png", sizes: "48x48", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-72.png", sizes: "72x72", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-96.png", sizes: "96x96", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-144.png", sizes: "144x144", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-152.png", sizes: "152x152", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-167.png", sizes: "167x167", type: "image/png", purpose: "any" },
+      { src: "/icons/icon-180.png", sizes: "180x180", type: "image/png", purpose: "any" },
       { src: "/icons/icon-192.png", sizes: "192x192", type: "image/png", purpose: "any" },
       { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "any" },
-      // "maskable" = Android adaptive icon (con safe zone interna al icono).
-      // Idealmente debería ser un archivo distinto con padding, pero si no existe
-      // uno dedicado, usar el mismo es válido y no rompe nada.
-      { src: "/icons/icon-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+      { src: "/icons/maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
     ],
   };
 }

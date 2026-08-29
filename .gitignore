@@ -13,7 +13,7 @@ feature-research.html
 !.yarn/plugins
 !.yarn/releases
 !.yarn/versions
-
+*CLAUDE.md
 /bkp
 .CLAUDE.md
 

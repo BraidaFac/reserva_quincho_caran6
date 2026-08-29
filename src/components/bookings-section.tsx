@@ -16,7 +16,9 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
   const normalize = (list: any[]) =>
     list.map((b) => ({ ...b, bookingDate: parseBookingDate(b.bookingDate) }));
 
-  const [bookings, setBookings] = useState<BookingWithUser[]>(() => normalize(initialBookings));
+  const [bookings, setBookings] = useState<BookingWithUser[]>(() =>
+    normalize(initialBookings),
+  );
 
   const refresh = useCallback(async () => {
     const res = await fetch("/api/bookings");
@@ -39,30 +41,28 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
         onRefresh={refresh}
       />
 
-      <div>
-        <div className="rounded-xl border bg-card p-4 shadow-warm-sm space-y-4">
-          <BookingList
-            bookings={myBookings}
-            currentUserId={userId}
-            isAdmin={isAdmin}
-            title="Mis reservas"
-            emptyMessage="No tenés reservas próximas"
-            onDeleted={handleDeleted}
-          />
-          {otherBookings.length > 0 && (
-            <>
-              <Separator />
-              <BookingList
-                bookings={otherBookings}
-                currentUserId={userId}
-                isAdmin={isAdmin}
-                title="Otras reservas"
-                emptyMessage="No hay otras reservas"
-                onDeleted={handleDeleted}
-              />
-            </>
-          )}
-        </div>
+      <div className="rounded-xl border bg-card p-4 shadow-warm-sm space-y-4 h-full">
+        <BookingList
+          bookings={myBookings}
+          currentUserId={userId}
+          isAdmin={isAdmin}
+          title="Mis reservas"
+          emptyMessage="No tenés reservas próximas"
+          onDeleted={handleDeleted}
+        />
+        {otherBookings.length > 0 && (
+          <>
+            <Separator />
+            <BookingList
+              bookings={otherBookings}
+              currentUserId={userId}
+              isAdmin={isAdmin}
+              title="Otras reservas"
+              emptyMessage="No hay otras reservas"
+              onDeleted={handleDeleted}
+            />
+          </>
+        )}
       </div>
     </div>
   );

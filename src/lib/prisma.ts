@@ -16,7 +16,10 @@ function parseDbUrl(url: string) {
 
 function createClient(): PrismaClient {
   return new PrismaClient({
-    adapter: new PrismaMariaDb(parseDbUrl(process.env.DATABASE_URL!)),
+    adapter: new PrismaMariaDb({
+      ...parseDbUrl(process.env.DATABASE_URL!),
+      ssl: { rejectUnauthorized: false },
+    }),
     log: process.env.NODE_ENV === "development" ? ["error"] : [],
   });
 }
