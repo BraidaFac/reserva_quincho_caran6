@@ -27,7 +27,7 @@ export function BookingList({
           {emptyMessage}
         </p>
       ) : (
-        <div className="max-h-90 overflow-y-auto space-y-3 pr-1">
+        <div className="space-y-3">
           {bookings.map((booking) => (
             <BookingCard
               key={booking.id}
