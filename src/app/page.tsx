@@ -15,9 +15,9 @@ export default async function HomePage() {
   const allBookings = await getUpcomingBookings();
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="h-screen flex flex-col bg-background">
       <Navbar />
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 sm:py-2 py-4">
+      <main className="max-w-5xl w-full mx-auto px-4 sm:px-6 sm:py-2 py-4 flex flex-col flex-1 min-h-0">
         <div className="mb-4 sm:mb-2">
           <h1 className="text-2xl font-bold text-foreground">
             Reservas de turnos

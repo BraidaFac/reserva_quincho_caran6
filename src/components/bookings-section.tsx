@@ -33,7 +33,7 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
   const otherBookings = bookings.filter((b) => b.userId !== userId);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 lg:items-start">
+    <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-6 flex-1 min-h-0 lg:items-stretch">
       <BookingCalendar
         userId={userId}
         isAdmin={isAdmin}
@@ -41,7 +41,7 @@ export function BookingsSection({ userId, isAdmin, initialBookings }: Props) {
         onRefresh={refresh}
       />
 
-      <div className="rounded-xl border bg-card p-4 shadow-warm-sm space-y-4 h-full">
+      <div className="rounded-xl border bg-card p-4 shadow-warm-sm space-y-4 overflow-y-auto scrollbar-none">
         <BookingList
           bookings={myBookings}
           currentUserId={userId}
